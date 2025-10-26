@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario Deportivo</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 20px;
+      margin: 0;
+    }
+
+    form {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      max-width: 450px;
+      margin: auto;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      transition: border-color 0.2s ease;
+    }
+
+    input[type="text"]:focus {
+      border-color: #0078d7;
+      outline: none;
+    }
+
+    p {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    label input[type="checkbox"],
+    label input[type="radio"] {
+      margin-right: 8px;
+      transform: scale(1.2);
+      vertical-align: middle;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 12px;
+      width: 100%;
+      background: #0078d7;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #005fa3;
+    }
+
+    #mensaje {
+      display: none;
+      text-align: center;
+      background: #e7ffe7;
+      border: 1px solid #80c780;
+      color: #2e7d32;
+      padding: 20px;
+      border-radius: 8px;
+      max-width: 450px;
+      margin: 25px auto;
+    }
+
+    #mensaje button {
+      width: auto;
+      padding: 10px 20px;
+      margin-top: 10px;
+      background: #0078d7;
+      border-radius: 5px;
+    }
+
+    #mensaje button:hover {
+      background: #005fa3;
+    }
+
+    /* 📱 Ajustes para pantallas pequeñas */
+    @media (max-width: 500px) {
+      body {
+        padding: 15px;
+      }
+      form {
+        padding: 20px;
+        border-radius: 10px;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+      input[type="text"] {
+        font-size: 0.95rem;
+      }
+      button {
+        font-size: 0.95rem;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Formulario Deportivo</h2>
+
+  <form id="miFormulario" method="POST" action="https://script.google.com/macros/s/AKfycbXXXXXX/exec">
+    <label for="nombres">Nombres:</label>
+    <input type="text" id="nombres" name="nombres" required>
+
+    <label for="apellidos">Apellidos:</label>
+    <input type="text" id="apellidos" name="apellidos" required>
+
+    <p>¿Qué deportes practicas?</p>
+    <label><input type="checkbox" name="deporte" value="Fútbol"> Fútbol</label>
+    <label><input type="checkbox" name="deporte" value="Básquetbol"> Básquetbol</label>
+    <label><input type="checkbox" name="deporte" value="Voleibol"> Voleibol</label>
+
+    <p>¿Cuál te gusta más?</p>
+    <label><input type="radio" name="gusto" value="Solo fútbol" required> Solo fútbol</label>
+    <label><input type="radio" name="gusto" value="Solo básquetbol"> Solo básquetbol</label>
+    <label><input type="radio" name="gusto" value="Solo voleibol"> Solo voleibol</label>
+    <label><input type="radio" name="gusto" value="Fútbol y básquetbol"> Fútbol y básquetbol</label>
+    <label><input type="radio" name="gusto" value="Fútbol y voleibol"> Fútbol y voleibol</label>
+    <label><input type="radio" name="gusto" value="Básquet y voleibol"> Básquet y voleibol</label>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <div id="mensaje">
+    <h3>✅ ¡Gracias por participar!</h3>
+    <p>Tus respuestas fueron registradas correctamente.</p>
+    <button onclick="window.location.reload()">Volver</button>
+  </div>
+
+  <script>
+    const form = document.getElementById("miFormulario");
+    const mensaje = document.getElementById("mensaje");
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const data = new FormData();
+
+      // Recolectar los checkboxes seleccionados
+      const deportes = [];
+      document.querySelectorAll('input[name="deporte"]:checked').forEach(chk => deportes.push(chk.value));
+
+      data.append("nombres", form.nombres.value);
+      data.append("apellidos", form.apellidos.value);
+      data.append("deporte", deportes.join(", "));
+      data.append("gusto", form.gusto.value);
+
+      try {
+        const respuesta = await fetch(form.action, { method: "POST", body: data });
+        if (respuesta.ok) {
+          form.style.display = "none";
+          mensaje.style.display = "block";
+        } else {
+          alert("Ocurrió un error al enviar. Intenta nuevamente.");
+        }
+      } catch (error) {
+        alert("Error de conexión. Revisa tu internet o el enlace del script.");
+      }
+    });
+  </script>
+
+</body>
+</html>
+
