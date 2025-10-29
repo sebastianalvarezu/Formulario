@@ -151,7 +151,7 @@
 
   <h2>Formulario Deportivo</h2>
 
-  <form id="miFormulario" method="POST" action="https://script.google.com/macros/s/AKfycbybtLJB3Guoq6_dTxWdmPY-Tnkt_iDluSCmGolaq-KO_8mSHmX2oiuokUecKe33mJQf/exec">
+  <form id="miFormulario" method="POST" action="https://script.google.com/macros/s/AKfycbwQHXinB4Muv2NglKTBsRj5x2ZPxHGwdy_bY-m4VjbMjPAEmrzLZK7N-w-IXQo29xhb/exec">
     <label for="nombres">Nombres:</label>
     <input type="text" id="nombres" name="nombres" required pattern="[A-Za-záéíóúñÁÉÍÓÚÑ\s]+" title="Solo se permiten letras y espacios." >
 
@@ -208,7 +208,7 @@
       data.append("gusto", form.gusto.value);
 
       try {
-        const respuesta = await fetch("https://script.google.com/macros/s/AKfycbybtLJB3Guoq6_dTxWdmPY-Tnkt_iDluSCmGolaq-KO_8mSHmX2oiuokUecKe33mJQf/exec", { method: "POST", body: data });
+        const respuesta = await fetch("https://script.google.com/macros/s/AKfycbwQHXinB4Muv2NglKTBsRj5x2ZPxHGwdy_bY-m4VjbMjPAEmrzLZK7N-w-IXQo29xhb/exec", { method: "POST", body: data });
         
         if (respuesta.ok) {
           form.style.display = "none";
@@ -241,7 +241,7 @@
     async function updateChart() {
         try {
             // Llamo la API de lectura (doGet) que cree en Apps Script
-            const response = await fetch("https://script.google.com/macros/s/AKfycbybtLJB3Guoq6_dTxWdmPY-Tnkt_iDluSCmGolaq-KO_8mSHmX2oiuokUecKe33mJQf/exec");
+            const response = await fetch("https://script.google.com/macros/s/AKfycbwQHXinB4Muv2NglKTBsRj5x2ZPxHGwdy_bY-m4VjbMjPAEmrzLZK7N-w-IXQo29xhb/exec");
             
             if (!response.ok) {
                 throw new Error("Error al obtener los datos del gráfico: " + response.statusText);
@@ -286,6 +286,7 @@
 
 </body>
 </html>
+
 
 
 
