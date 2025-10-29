@@ -38,6 +38,11 @@
         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     }
 
+.contenedor {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+}
     h2 {
         text-align: center;
         font-size: 1.5rem;
@@ -159,8 +164,9 @@
 </head>
 <body>
 
+ <div class="contenedor">
   <h2>Formulario Deportivo</h2>
-
+ </div>
   <form id="miFormulario" method="POST" action="https://script.google.com/macros/s/AKfycbwQHXinB4Muv2NglKTBsRj5x2ZPxHGwdy_bY-m4VjbMjPAEmrzLZK7N-w-IXQo29xhb/exec">
     <label for="nombres">Nombres:</label>
     <input type="text" id="nombres" name="nombres" required pattern="[A-Za-záéíóúñÁÉÍÓÚÑ\s]+" title="Solo se permiten letras y espacios." >
@@ -298,6 +304,7 @@
 
 </body>
 </html>
+
 
 
 
