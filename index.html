@@ -122,7 +122,7 @@
         background: #005fa3;
     }
 
-    /* 📱 Ajustes para pantallas pequeñas */
+    /*Ajustes para el responsive*/
     @media (max-width: 500px) {
         body {
             padding: 15px;
@@ -254,7 +254,7 @@
                 return;
             }
 
-            // Convierte los datos de conteo que son JSON a un formato de tabla que Google Charts pueda interpretar
+            // Convierto los datos de conteo que son JSON a un formato de tabla que Google Charts pueda interpretar
             const dataArray = [['Gusto', 'Votos']];
             for (const key in dataCounts) {
                 if (dataCounts.hasOwnProperty(key)) {
@@ -286,5 +286,6 @@
 
 </body>
 </html>
+
 
 
